@@ -28,12 +28,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Small\\SwooleDb\\": "src"
+      "Crust\\SwooleDb\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Small\\SwooleDb\\Test\\": "tests"
+      "Crust\\SwooleDb\\Test\\": "tests"
     }
   },"scripts": {
     "unit-tests": "bash bin/composer-scripts/test"
