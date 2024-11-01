@@ -1,6 +1,6 @@
 <?php
 
-namespace Small\SwooleDb\Exception;
+namespace Crust\SwooleDb\Exception;
 
 class UnknownForeignKeyException extends SmallSwooleDbException
 {

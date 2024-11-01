@@ -5,12 +5,12 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Test\Registry;
+namespace Crust\SwooleDb\Test\Registry;
 
 use PHPUnit\Framework\TestCase;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Registry\Enum\ParamType;
-use Small\SwooleDb\Registry\ParamRegistry;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\ParamRegistry;
 
 class ParamRegistryTest extends TestCase
 {

@@ -5,14 +5,14 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Test\Registry;
+namespace Crust\SwooleDb\Test\Registry;
 
 use PHPUnit\Framework\TestCase;
-use Small\SwooleDb\Core\Persistence\AsJsonFile;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Registry\Enum\ParamType;
-use Small\SwooleDb\Registry\ParamRegistry;
-use Small\SwooleDb\Registry\PersistenceRegistry;
+use Crust\SwooleDb\Core\Persistence\AsJsonFile;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\ParamRegistry;
+use Crust\SwooleDb\Registry\PersistenceRegistry;
 
 class PersistenceRegistryTest extends TestCase
 {

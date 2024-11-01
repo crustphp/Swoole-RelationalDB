@@ -5,25 +5,25 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Selector;
+namespace Crust\SwooleDb\Selector;
 
-use Small\SwooleDb\Core\Bean\IndexFilter;
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\Enum\Operator;
-use Small\SwooleDb\Core\Record;
-use Small\SwooleDb\Core\RecordCollection;
-use Small\SwooleDb\Core\Resultset;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Registry\TableRegistry;
-use Small\SwooleDb\Selector\Bean\Bracket;
-use Small\SwooleDb\Selector\Bean\Condition;
-use Small\SwooleDb\Selector\Bean\OrderByCollection;
-use Small\SwooleDb\Selector\Bean\OrderByField;
-use Small\SwooleDb\Selector\Bean\ResultTree;
-use Small\SwooleDb\Selector\Enum\BracketOperator;
-use Small\SwooleDb\Selector\Enum\ConditionElementType;
-use Small\SwooleDb\Selector\Enum\ConditionOperator;
-use Small\SwooleDb\Selector\Exception\SyntaxErrorException;
+use Crust\SwooleDb\Core\Bean\IndexFilter;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\Enum\Operator;
+use Crust\SwooleDb\Core\Record;
+use Crust\SwooleDb\Core\RecordCollection;
+use Crust\SwooleDb\Core\Resultset;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Selector\Bean\Bracket;
+use Crust\SwooleDb\Selector\Bean\Condition;
+use Crust\SwooleDb\Selector\Bean\OrderByCollection;
+use Crust\SwooleDb\Selector\Bean\OrderByField;
+use Crust\SwooleDb\Selector\Bean\ResultTree;
+use Crust\SwooleDb\Selector\Enum\BracketOperator;
+use Crust\SwooleDb\Selector\Enum\ConditionElementType;
+use Crust\SwooleDb\Selector\Enum\ConditionOperator;
+use Crust\SwooleDb\Selector\Exception\SyntaxErrorException;
 use Small\SwooleEntityManager\QueryBuilder\Exception\WhereNotDefinedException;
 
 class TableSelector
@@ -174,7 +174,7 @@ class TableSelector
      * @return IndexFilter[][]
      * @throws NotFoundException
      * @throws SyntaxErrorException
-     * @throws \Small\SwooleDb\Exception\TableNotExists
+     * @throws \Crust\SwooleDb\Exception\TableNotExists
      */
     public function getOptimisations(): array
     {
@@ -366,7 +366,7 @@ class TableSelector
     /**
      * Execute query
      * @return Resultset
-     * @throws \Small\SwooleDb\Exception\TableNotExists
+     * @throws \Crust\SwooleDb\Exception\TableNotExists
      */
     public function execute(): Resultset
     {

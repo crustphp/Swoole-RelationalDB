@@ -24,7 +24,7 @@ You can :
 
 To create a table, use registry method :
 ```php
-use \Small\SwooleDb\Registry\TableRegistry;
+use \Crust\SwooleDb\Registry\TableRegistry;
 
 $testTable = TableRegistry::getInstance()->createTable('testTable', 128);
 ```
@@ -42,9 +42,9 @@ Only these type are accepted :
 Note the size param is required, except for flot type
 
 ```php
-use \Small\SwooleDb\Registry\TableRegistry;
-use \Small\SwooleDb\Core\Column;
-use \Small\SwooleDb\Core\Enum\ColumnType;
+use \Crust\SwooleDb\Registry\TableRegistry;
+use \Crust\SwooleDb\Core\Column;
+use \Crust\SwooleDb\Core\Enum\ColumnType;
 
 TableRegistry::getInstance()->getTable('testTable')
     ->addColumn(new Column('firstname', ColumnType::string, 256))
@@ -54,14 +54,14 @@ TableRegistry::getInstance()->getTable('testTable')
 
 Now we have added the columns, we can create in memory :
 ```php
-use \Small\SwooleDb\Registry\TableRegistry;
+use \Crust\SwooleDb\Registry\TableRegistry;
 
 $success = TableRegistry::getInstance()->getTable('testTable')->create();
 ```
 
 The table is now ready to use as a OpenSwoole\Table object :
 ```php
-use \Small\SwooleDb\Registry\TableRegistry;
+use \Crust\SwooleDb\Registry\TableRegistry;
 
 $table = TableRegistry::getInstance()->getTable('testTable')
 $table->set(0, ['franck', 12.5, 11]);
@@ -73,7 +73,7 @@ $table->set(1, ['joe', 55.2, 26]);
 You can link two tables throw foreign key.
 
 ```php
-use Small\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Registry\TableRegistry;
 
 $table = TableRegistry::getInstance()->createTable('testSelectJoin', 5);
 $table->addColumn(new Column('name', ColumnType::string, 255));
@@ -100,7 +100,7 @@ See [OpenSwoole documentation for Table](https://openswoole.com/docs/modules/swo
 Once you don't need anymore table, you can destroy it to free all associated memory.
 
 ```php
-use \Small\SwooleDb\Registry\TableRegistry;
+use \Crust\SwooleDb\Registry\TableRegistry;
 
 $table = TableRegistry::getInstance()->destroy('testTable');
 ```
@@ -114,7 +114,7 @@ When you need persistence for table, you can store table to a json file.
 Soon, I will develop redis and mysql persistence but for now, use default persistence :
 
 ```php
-use \Small\SwooleDb\Registry\TableRegistry;
+use \Crust\SwooleDb\Registry\TableRegistry;
 
 TableRegistry::getInstance()->persist('testTable');
 ```
@@ -123,7 +123,7 @@ This will store table definition in a json file stored in /var/lib/small-swoole-
 
 To reload table from disk (at server restart for example) :
 ```php
-use \Small\SwooleDb\Registry\TableRegistry;
+use \Crust\SwooleDb\Registry\TableRegistry;
 
 TableRegistry::getInstance()->loadFromChannel('testTable');
 ```
@@ -135,15 +135,15 @@ This will restore table in registry and memory with all data from last persist.
 If you want, you can use ParamRegistry to change :
 - location of /var/lib direcoty :
 ```php
-use Small\SwooleDb\Registry\ParamRegistry;
-use Small\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\ParamRegistry;
+use Crust\SwooleDb\Registry\Enum\ParamType;
 
 ParamRegistry::getInstance()->set(ParamType::varLibDir, '/home/some-user');
 ```
 - data dir name :
 ```php
-use Small\SwooleDb\Registry\ParamRegistry;
-use Small\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\ParamRegistry;
+use Crust\SwooleDb\Registry\Enum\ParamType;
 
 ParamRegistry::getInstance()->set(ParamType::dataDirName, 'persistence');
 ```
@@ -160,7 +160,7 @@ You can use selector to build complex requests.
 Basically, you can select all records :
 
 ```php
-use Small\SwooleDb\Selector\TableSelector;
+use Crust\SwooleDb\Selector\TableSelector;
 
 $selector = new TableSelector('testSelect');
 $records = $selector->execute();
@@ -173,9 +173,9 @@ foreach ($records as $record) {
 You can use *where* to add conditions :
 
 ```php
-use Small\SwooleDb\Selector\TableSelector;
-use Small\SwooleDb\Selector\Enum\ConditionElementType;
-use Small\SwooleDb\Selector\Enum\ConditionOperator;
+use Crust\SwooleDb\Selector\TableSelector;
+use Crust\SwooleDb\Selector\Enum\ConditionElementType;
+use Crust\SwooleDb\Selector\Enum\ConditionOperator;
 
 $selector = new TableSelector('testSelect');
 $selector->where()
@@ -193,7 +193,7 @@ foreach ($records as $record) {
 
 You can also join result throw foreign keys :
 ```php
-use Small\SwooleDb\Selector\TableSelector;
+use Crust\SwooleDb\Selector\TableSelector;
 
 $result = (new TableSelector('user'))
     ->join('post', 'messageOwner', 'message')
@@ -206,9 +206,9 @@ foreach ($result as $record) {
 
 And select any of fields (note that you can change record and persist easily) :
 ```php
-use Small\SwooleDb\Selector\TableSelector;
-use Small\SwooleDb\Selector\Enum\ConditionElementType;
-use Small\SwooleDb\Selector\Enum\ConditionOperator;
+use Crust\SwooleDb\Selector\TableSelector;
+use Crust\SwooleDb\Selector\Enum\ConditionElementType;
+use Crust\SwooleDb\Selector\Enum\ConditionOperator;
 
 $selector = (new TableSelector('user'))
     ->join('post', 'messageOwner', 'message')

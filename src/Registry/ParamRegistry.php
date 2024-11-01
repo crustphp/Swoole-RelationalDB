@@ -5,11 +5,11 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Registry;
+namespace Crust\SwooleDb\Registry;
 
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Registry\Enum\ParamType;
-use Small\SwooleDb\Registry\Trait\RegistryTrait;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\Trait\RegistryTrait;
 
 final class ParamRegistry
 {

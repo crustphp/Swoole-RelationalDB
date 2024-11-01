@@ -5,18 +5,18 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Index;
+namespace Crust\SwooleDb\Core\Index;
 
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Core\Enum\ForeignKeyType;
-use Small\SwooleDb\Core\Record;
-use Small\SwooleDb\Core\RecordCollection;
-use Small\SwooleDb\Core\Resultset;
-use Small\SwooleDb\Core\Table;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Exception\TableNotExists;
-use Small\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Core\Enum\ForeignKeyType;
+use Crust\SwooleDb\Core\Record;
+use Crust\SwooleDb\Core\RecordCollection;
+use Crust\SwooleDb\Core\Resultset;
+use Crust\SwooleDb\Core\Table;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Exception\TableNotExists;
+use Crust\SwooleDb\Registry\TableRegistry;
 
 class ForeignKey
 {
@@ -108,7 +108,7 @@ class ForeignKey
     /**
      * Create an index table
      * @return self
-     * @throws \Small\SwooleDb\Exception\MalformedTable
+     * @throws \Crust\SwooleDb\Exception\MalformedTable
      */
     private function createForeignIndexTable(): self
     {
@@ -130,7 +130,7 @@ class ForeignKey
      * @param int|float|string|null $value
      * @param int|float|string|null $foreignKey
      * @return $this
-     * @throws \Small\SwooleDb\Exception\FieldValueIsNull
+     * @throws \Crust\SwooleDb\Exception\FieldValueIsNull
      */
     public function addToForeignIndex(mixed $value, mixed $foreignKey): self
     {
@@ -201,7 +201,7 @@ class ForeignKey
      * Delete key from index
      * @param string|int $value
      * @return $this
-     * @throws \Small\SwooleDb\Exception\NotFoundException
+     * @throws \Crust\SwooleDb\Exception\NotFoundException
      */
     public function deleteFromForeignIndex(string|int $value): self
     {

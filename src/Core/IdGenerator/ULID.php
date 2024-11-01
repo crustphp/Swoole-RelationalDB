@@ -5,10 +5,10 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\IdGenerator;
+namespace Crust\SwooleDb\Core\IdGenerator;
 
 use Random\RandomException;
-use Small\SwooleDb\Core\Contract\IdGeneratorInterface;
+use Crust\SwooleDb\Core\Contract\IdGeneratorInterface;
 
 class ULID implements IdGeneratorInterface
 {

@@ -5,16 +5,16 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Persistence;
+namespace Crust\SwooleDb\Core\Persistence;
 
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\Contract\PersistenceInterface;
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Core\Table;
-use Small\SwooleDb\Exception\FileNotFoundException;
-use Small\SwooleDb\Exception\WrongFormatException;
-use Small\SwooleDb\Registry\Enum\ParamType;
-use Small\SwooleDb\Registry\ParamRegistry;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\Contract\PersistenceInterface;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Core\Table;
+use Crust\SwooleDb\Exception\FileNotFoundException;
+use Crust\SwooleDb\Exception\WrongFormatException;
+use Crust\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\ParamRegistry;
 
 class AsJsonFile implements PersistenceInterface
 {
@@ -58,8 +58,8 @@ class AsJsonFile implements PersistenceInterface
      * @return Table
      * @throws FileNotFoundException
      * @throws WrongFormatException
-     * @throws \Small\SwooleDb\Exception\MalformedTable
-     * @throws \Small\SwooleDb\Exception\NotFoundException
+     * @throws \Crust\SwooleDb\Exception\MalformedTable
+     * @throws \Crust\SwooleDb\Exception\NotFoundException
      */
     public function load(string $name): Table
     {
@@ -129,7 +129,7 @@ class AsJsonFile implements PersistenceInterface
      * Get file path
      * @param string $name
      * @return string
-     * @throws \Small\SwooleDb\Exception\NotFoundException
+     * @throws \Crust\SwooleDb\Exception\NotFoundException
      */
     public function getFilename(string $name)
     {
@@ -141,7 +141,7 @@ class AsJsonFile implements PersistenceInterface
      * Get data dir
      * @return string
      * @throws FileNotFoundException
-     * @throws \Small\SwooleDb\Exception\NotFoundException
+     * @throws \Crust\SwooleDb\Exception\NotFoundException
      */
     public function getDataDirname(): string
     {
@@ -165,7 +165,7 @@ class AsJsonFile implements PersistenceInterface
      * @param string $name
      * @return void
      * @throws FileNotFoundException
-     * @throws \Small\SwooleDb\Exception\NotFoundException
+     * @throws \Crust\SwooleDb\Exception\NotFoundException
      */
     private function checkFileExists(string $name): void
     {

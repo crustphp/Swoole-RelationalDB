@@ -5,13 +5,13 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Selector;
+namespace Crust\SwooleDb\Selector;
 
-use Small\SwooleDb\Core\Record;
-use Small\SwooleDb\Core\RecordCollection;
-use Small\SwooleDb\Core\Resultset;
-use Small\SwooleDb\Core\Table;
-use Small\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Core\Record;
+use Crust\SwooleDb\Core\RecordCollection;
+use Crust\SwooleDb\Core\Resultset;
+use Crust\SwooleDb\Core\Table;
+use Crust\SwooleDb\Registry\TableRegistry;
 
 class Join
 {

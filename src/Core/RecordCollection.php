@@ -5,11 +5,11 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core;
+namespace Crust\SwooleDb\Core;
 
 use Small\Collection\Collection\Collection;
 use Small\Collection\Contract\CheckValueInterface;
-use Small\SwooleDb\Exception\RecordCollectionException;
+use Crust\SwooleDb\Exception\RecordCollectionException;
 
 /**
  * @method Record current()

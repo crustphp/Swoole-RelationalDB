@@ -5,7 +5,7 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Contract;
+namespace Crust\SwooleDb\Core\Contract;
 
 interface IdGeneratorInterface
 {

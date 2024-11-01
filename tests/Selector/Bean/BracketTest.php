@@ -5,16 +5,16 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Test\Selector\Bean;
+namespace Crust\SwooleDb\Test\Selector\Bean;
 
 use PHPUnit\Framework\TestCase;
-use Small\SwooleDb\Core\RecordCollection;
-use Small\SwooleDb\Selector\Bean\Bracket;
-use Small\SwooleDb\Selector\Bean\Condition;
-use Small\SwooleDb\Selector\Bean\ConditionElement;
-use Small\SwooleDb\Selector\Enum\ConditionElementType;
-use Small\SwooleDb\Selector\Enum\ConditionOperator;
-use Small\SwooleDb\Selector\Exception\SyntaxErrorException;
+use Crust\SwooleDb\Core\RecordCollection;
+use Crust\SwooleDb\Selector\Bean\Bracket;
+use Crust\SwooleDb\Selector\Bean\Condition;
+use Crust\SwooleDb\Selector\Bean\ConditionElement;
+use Crust\SwooleDb\Selector\Enum\ConditionElementType;
+use Crust\SwooleDb\Selector\Enum\ConditionOperator;
+use Crust\SwooleDb\Selector\Exception\SyntaxErrorException;
 
 class BracketTest extends TestCase
 {

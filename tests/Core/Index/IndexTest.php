@@ -1,10 +1,10 @@
 <?php
 
-namespace Small\SwooleDb\Test\Core\Index;
+namespace Crust\SwooleDb\Test\Core\Index;
 
 use PHPUnit\Framework\TestCase;
-use Small\SwooleDb\Core\Enum\Operator;
-use Small\SwooleDb\Core\Index\Index;
+use Crust\SwooleDb\Core\Enum\Operator;
+use Crust\SwooleDb\Core\Index\Index;
 
 class IndexTest extends TestCase
 {

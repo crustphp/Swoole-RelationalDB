@@ -5,9 +5,9 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\IdGenerator;
+namespace Crust\SwooleDb\Core\IdGenerator;
 
-use Small\SwooleDb\Core\Contract\IdGeneratorInterface;
+use Crust\SwooleDb\Core\Contract\IdGeneratorInterface;
 
 class UUID implements IdGeneratorInterface
 {

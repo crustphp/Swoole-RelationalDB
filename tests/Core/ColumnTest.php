@@ -5,12 +5,12 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Test\Core;
+namespace Crust\SwooleDb\Test\Core;
 
 use PHPUnit\Framework\TestCase;
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Exception\MalformedTable;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Exception\MalformedTable;
 
 class ColumnTest extends TestCase
 {

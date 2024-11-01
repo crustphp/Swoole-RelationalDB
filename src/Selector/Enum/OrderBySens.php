@@ -5,7 +5,7 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Selector\Enum;
+namespace Crust\SwooleDb\Selector\Enum;
 
 enum OrderBySens
 {

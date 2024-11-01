@@ -5,15 +5,15 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Test\Core\Persistence;
+namespace Crust\SwooleDb\Test\Core\Persistence;
 
 use PHPUnit\Framework\TestCase;
-use Small\SwooleDb\Core\Persistence\AsJsonFile;
-use Small\SwooleDb\Core\Table;
-use Small\SwooleDb\Exception\FileNotFoundException;
-use Small\SwooleDb\Exception\WrongFormatException;
-use Small\SwooleDb\Registry\Enum\ParamType;
-use Small\SwooleDb\Registry\ParamRegistry;
+use Crust\SwooleDb\Core\Persistence\AsJsonFile;
+use Crust\SwooleDb\Core\Table;
+use Crust\SwooleDb\Exception\FileNotFoundException;
+use Crust\SwooleDb\Exception\WrongFormatException;
+use Crust\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\ParamRegistry;
 
 class AsJsonFileTest extends TestCase
 {

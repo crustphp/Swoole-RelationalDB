@@ -5,12 +5,12 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Index;
+namespace Crust\SwooleDb\Core\Index;
 
-use Small\SwooleDb\Core\Enum\Operator;
-use Small\SwooleDb\Core\Index\Enum\IndexNodeFrom;
-use Small\SwooleDb\Core\Table;
-use Small\SwooleDb\Exception\IndexException;
+use Crust\SwooleDb\Core\Enum\Operator;
+use Crust\SwooleDb\Core\Index\Enum\IndexNodeFrom;
+use Crust\SwooleDb\Core\Table;
+use Crust\SwooleDb\Exception\IndexException;
 
 final class IndexNode implements \JsonSerializable
 {
@@ -113,7 +113,7 @@ final class IndexNode implements \JsonSerializable
      * Load node
      * @param int $key
      * @return $this
-     * @throws \Small\SwooleDb\Exception\NotFoundException
+     * @throws \Crust\SwooleDb\Exception\NotFoundException
      */
     public function load(int $key): self
     {

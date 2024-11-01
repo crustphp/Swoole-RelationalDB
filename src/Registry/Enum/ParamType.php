@@ -5,7 +5,7 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Registry\Enum;
+namespace Crust\SwooleDb\Registry\Enum;
 
 enum ParamType
 {

@@ -5,16 +5,16 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Selector\Bean;
+namespace Crust\SwooleDb\Selector\Bean;
 
-use Small\SwooleDb\Core\Bean\IndexFilter;
-use Small\SwooleDb\Core\Enum\Operator;
-use Small\SwooleDb\Core\RecordCollection;
-use Small\SwooleDb\Registry\TableRegistry;
-use Small\SwooleDb\Selector\Enum\BracketOperator;
-use Small\SwooleDb\Selector\Enum\ConditionElementType;
-use Small\SwooleDb\Selector\Enum\ConditionOperator;
-use Small\SwooleDb\Selector\Exception\SyntaxErrorException;
+use Crust\SwooleDb\Core\Bean\IndexFilter;
+use Crust\SwooleDb\Core\Enum\Operator;
+use Crust\SwooleDb\Core\RecordCollection;
+use Crust\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Selector\Enum\BracketOperator;
+use Crust\SwooleDb\Selector\Enum\ConditionElementType;
+use Crust\SwooleDb\Selector\Enum\ConditionOperator;
+use Crust\SwooleDb\Selector\Exception\SyntaxErrorException;
 
 class Bracket
 {

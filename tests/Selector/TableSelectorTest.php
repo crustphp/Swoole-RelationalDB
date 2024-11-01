@@ -5,23 +5,23 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Test\Selector;
+namespace Crust\SwooleDb\Test\Selector;
 
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\CodeCoverage\Driver\Selector;
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Core\IdGenerator\ULID;
-use Small\SwooleDb\Core\Record;
-use Small\SwooleDb\Core\Table;
-use Small\SwooleDb\Registry\TableRegistry;
-use Small\SwooleDb\Selector\Bean\Condition;
-use Small\SwooleDb\Selector\Bean\ConditionElement;
-use Small\SwooleDb\Selector\Bean\OrderByField;
-use Small\SwooleDb\Selector\Enum\ConditionElementType;
-use Small\SwooleDb\Selector\Enum\ConditionOperator;
-use Small\SwooleDb\Selector\Enum\OrderBySens;
-use Small\SwooleDb\Selector\TableSelector;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Core\IdGenerator\ULID;
+use Crust\SwooleDb\Core\Record;
+use Crust\SwooleDb\Core\Table;
+use Crust\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Selector\Bean\Condition;
+use Crust\SwooleDb\Selector\Bean\ConditionElement;
+use Crust\SwooleDb\Selector\Bean\OrderByField;
+use Crust\SwooleDb\Selector\Enum\ConditionElementType;
+use Crust\SwooleDb\Selector\Enum\ConditionOperator;
+use Crust\SwooleDb\Selector\Enum\OrderBySens;
+use Crust\SwooleDb\Selector\TableSelector;
 use function _PHPStan_156ee64ba\React\Promise\Timer\timeout;
 use function _PHPStan_cc8d35ffb\Symfony\Component\String\b;
 

@@ -5,11 +5,11 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Selector\Bean;
+namespace Crust\SwooleDb\Selector\Bean;
 
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\RecordCollection;
-use Small\SwooleDb\Selector\Enum\OrderBySens;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\RecordCollection;
+use Crust\SwooleDb\Selector\Enum\OrderBySens;
 
 readonly class OrderByField
 {
@@ -23,7 +23,7 @@ readonly class OrderByField
     /**
      * @param RecordCollection $recordCollection
      * @return float|int|string|null
-     * @throws \Small\SwooleDb\Exception\NotFoundException
+     * @throws \Crust\SwooleDb\Exception\NotFoundException
      */
     public function translateGetValue(RecordCollection $recordCollection): float|int|string|null
     {

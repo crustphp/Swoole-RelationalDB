@@ -5,10 +5,10 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core;
+namespace Crust\SwooleDb\Core;
 
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Exception\MalformedTable;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Exception\MalformedTable;
 
 class Column
 {

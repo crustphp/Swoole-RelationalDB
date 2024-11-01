@@ -5,12 +5,12 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Registry;
+namespace Crust\SwooleDb\Registry;
 
-use Small\SwooleDb\Exception\TableAlreadyExists;
-use Small\SwooleDb\Exception\TableNotExists;
-use Small\SwooleDb\Registry\Trait\RegistryTrait;
-use Small\SwooleDb\Core\Table;
+use Crust\SwooleDb\Exception\TableAlreadyExists;
+use Crust\SwooleDb\Exception\TableNotExists;
+use Crust\SwooleDb\Registry\Trait\RegistryTrait;
+use Crust\SwooleDb\Core\Table;
 
 /**
  *
@@ -28,7 +28,7 @@ final class TableRegistry
      * @param string $tableName
      * @param string $channel
      * @return Table
-     * @throws \Small\SwooleDb\Exception\SmallSwooleDbException
+     * @throws \Crust\SwooleDb\Exception\SmallSwooleDbException
      */
     public function load(string $tableName, string $channel = PersistenceRegistry::DEFAULT): Table
     {
@@ -45,7 +45,7 @@ final class TableRegistry
      * @param string $channel
      * @return $this
      * @throws TableNotExists
-     * @throws \Small\SwooleDb\Exception\SmallSwooleDbException
+     * @throws \Crust\SwooleDb\Exception\SmallSwooleDbException
      */
     public function persist(string $tableName, string $channel = PersistenceRegistry::DEFAULT): self
     {

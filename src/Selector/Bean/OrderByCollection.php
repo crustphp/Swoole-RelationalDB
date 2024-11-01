@@ -5,12 +5,12 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Selector\Bean;
+namespace Crust\SwooleDb\Selector\Bean;
 
 use Small\Collection\Collection\Collection;
 use Small\Collection\Contract\CheckValueInterface;
-use Small\SwooleDb\Core\RecordCollection;
-use Small\SwooleDb\Selector\Exception\SyntaxErrorException;
+use Crust\SwooleDb\Core\RecordCollection;
+use Crust\SwooleDb\Selector\Exception\SyntaxErrorException;
 
 /**
  * @method OrderByField offsetGet(mixed $offset)

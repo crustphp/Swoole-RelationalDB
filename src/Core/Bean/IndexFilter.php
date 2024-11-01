@@ -5,9 +5,9 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Bean;
+namespace Crust\SwooleDb\Core\Bean;
 
-use Small\SwooleDb\Core\Enum\Operator;
+use Crust\SwooleDb\Core\Enum\Operator;
 
 final readonly class IndexFilter
 {

@@ -5,33 +5,33 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core;
+namespace Crust\SwooleDb\Core;
 
 if (!\class_exists('\OpenSwoole\Table')) {
     \class_alias('\Swoole\Table', '\OpenSwoole\Table');
 }
 
 use Small\Collection\Collection\Collection;
-use Small\SwooleDb\Core\Bean\IndexFilter;
-use Small\SwooleDb\Core\Contract\IdGeneratorInterface;
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Core\Enum\ForeignKeyType;
-use Small\SwooleDb\Core\Enum\Operator;
-use Small\SwooleDb\Exception\MalformedTable;
-use Small\SwooleDb\Selector\Enum\ConditionOperator;
-use Small\SwooleDb\Core\Index\ForeignKey;
-use Small\SwooleDb\Core\Index\Index;
-use Small\SwooleDb\Exception\FieldValueIsNull;
-use Small\SwooleDb\Exception\ForbiddenActionException;
-use Small\SwooleDb\Exception\IndexException;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Exception\UnknownForeignKeyException;
-use Small\SwooleDb\Registry\TableRegistry;
-use Small\SwooleDb\Selector\Bean\Condition;
-use Small\SwooleDb\Selector\Bean\ConditionElement;
-use Small\SwooleDb\Selector\Enum\ConditionElementType;
-use Small\SwooleDb\Selector\Exception\SyntaxErrorException;
-use Small\SwooleDb\Selector\TableSelector;
+use Crust\SwooleDb\Core\Bean\IndexFilter;
+use Crust\SwooleDb\Core\Contract\IdGeneratorInterface;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Core\Enum\ForeignKeyType;
+use Crust\SwooleDb\Core\Enum\Operator;
+use Crust\SwooleDb\Exception\MalformedTable;
+use Crust\SwooleDb\Selector\Enum\ConditionOperator;
+use Crust\SwooleDb\Core\Index\ForeignKey;
+use Crust\SwooleDb\Core\Index\Index;
+use Crust\SwooleDb\Exception\FieldValueIsNull;
+use Crust\SwooleDb\Exception\ForbiddenActionException;
+use Crust\SwooleDb\Exception\IndexException;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Exception\UnknownForeignKeyException;
+use Crust\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Selector\Bean\Condition;
+use Crust\SwooleDb\Selector\Bean\ConditionElement;
+use Crust\SwooleDb\Selector\Enum\ConditionElementType;
+use Crust\SwooleDb\Selector\Exception\SyntaxErrorException;
+use Crust\SwooleDb\Selector\TableSelector;
 
 class Table implements \Iterator
 {
@@ -288,7 +288,7 @@ class Table implements \Iterator
      * @throws FieldValueIsNull
      * @throws NotFoundException
      * @throws SyntaxErrorException
-     * @throws \Small\SwooleDb\Exception\TableNotExists
+     * @throws \Crust\SwooleDb\Exception\TableNotExists
      */
     public function set(string|null $key, array $setValues, bool $abs = false): string|null
     {
@@ -338,7 +338,7 @@ class Table implements \Iterator
      * @return $this
      * @throws FieldValueIsNull
      * @throws NotFoundException
-     * @throws \Small\SwooleDb\Exception\TableNotExists
+     * @throws \Crust\SwooleDb\Exception\TableNotExists
      */
     public function addToForeignKeys(string $key, array $values): self
     {
@@ -416,7 +416,7 @@ class Table implements \Iterator
      * @param string $toField
      * @return $this
      * @throws NotFoundException
-     * @throws \Small\SwooleDb\Exception\TableNotExists
+     * @throws \Crust\SwooleDb\Exception\TableNotExists
      */
     public function addForeignKey(string $name, string $toTableName, string $fromField, string $toField = Column::KEY_COL_NAME): self
     {

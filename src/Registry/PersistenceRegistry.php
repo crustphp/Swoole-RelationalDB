@@ -5,14 +5,14 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Registry;
+namespace Crust\SwooleDb\Registry;
 
-use Small\SwooleDb\Core\Contract\PersistenceInterface;
-use Small\SwooleDb\Core\Persistence\AsJsonFile;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Exception\SmallSwooleDbException;
-use Small\SwooleDb\Registry\Enum\ParamType;
-use Small\SwooleDb\Registry\Trait\RegistryTrait;
+use Crust\SwooleDb\Core\Contract\PersistenceInterface;
+use Crust\SwooleDb\Core\Persistence\AsJsonFile;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Exception\SmallSwooleDbException;
+use Crust\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\Trait\RegistryTrait;
 
 final class PersistenceRegistry
 {

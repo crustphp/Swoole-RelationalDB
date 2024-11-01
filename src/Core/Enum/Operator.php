@@ -5,9 +5,9 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Enum;
+namespace Crust\SwooleDb\Core\Enum;
 
-use Small\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Exception\NotFoundException;
 
 enum Operator
 {

@@ -5,7 +5,7 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Exception;
+namespace Crust\SwooleDb\Exception;
 
 class TableNotExists extends SmallSwooleDbException
 {

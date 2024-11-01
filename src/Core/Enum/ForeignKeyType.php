@@ -5,7 +5,7 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Enum;
+namespace Crust\SwooleDb\Core\Enum;
 
 enum ForeignKeyType
 {

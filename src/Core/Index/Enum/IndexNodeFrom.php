@@ -5,7 +5,7 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Index\Enum;
+namespace Crust\SwooleDb\Core\Index\Enum;
 
 enum IndexNodeFrom
 {

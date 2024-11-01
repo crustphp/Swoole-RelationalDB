@@ -5,13 +5,13 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Selector\Bean;
+namespace Crust\SwooleDb\Selector\Bean;
 
 use Small\Collection\Collection\Collection;
-use Small\SwooleDb\Core\RecordCollection;
-use Small\SwooleDb\Exception\WrongFormatException;
-use Small\SwooleDb\Selector\Enum\ConditionElementType;
-use Small\SwooleDb\Selector\Exception\SyntaxErrorException;
+use Crust\SwooleDb\Core\RecordCollection;
+use Crust\SwooleDb\Exception\WrongFormatException;
+use Crust\SwooleDb\Selector\Enum\ConditionElementType;
+use Crust\SwooleDb\Selector\Exception\SyntaxErrorException;
 
 class ConditionElement
 {

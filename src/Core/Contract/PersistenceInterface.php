@@ -5,9 +5,9 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Contract;
+namespace Crust\SwooleDb\Core\Contract;
 
-use Small\SwooleDb\Core\Table;
+use Crust\SwooleDb\Core\Table;
 
 interface PersistenceInterface
 {

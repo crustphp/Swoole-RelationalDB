@@ -5,20 +5,20 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Test\Registry;
+namespace Crust\SwooleDb\Test\Registry;
 
 use \PHPUnit\Framework\TestCase;
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Core\Persistence\AsJsonFile;
-use Small\SwooleDb\Core\Table;
-use Small\SwooleDb\Exception\FileNotFoundException;
-use Small\SwooleDb\Exception\TableAlreadyExists;
-use Small\SwooleDb\Exception\TableNotExists;
-use Small\SwooleDb\Registry\Enum\ParamType;
-use Small\SwooleDb\Registry\ParamRegistry;
-use Small\SwooleDb\Registry\PersistenceRegistry;
-use Small\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Core\Persistence\AsJsonFile;
+use Crust\SwooleDb\Core\Table;
+use Crust\SwooleDb\Exception\FileNotFoundException;
+use Crust\SwooleDb\Exception\TableAlreadyExists;
+use Crust\SwooleDb\Exception\TableNotExists;
+use Crust\SwooleDb\Registry\Enum\ParamType;
+use Crust\SwooleDb\Registry\ParamRegistry;
+use Crust\SwooleDb\Registry\PersistenceRegistry;
+use Crust\SwooleDb\Registry\TableRegistry;
 
 class TableRegistryTest extends TestCase
 {

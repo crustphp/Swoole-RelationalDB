@@ -5,14 +5,14 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core;
+namespace Crust\SwooleDb\Core;
 
 use Small\Collection\Collection\Collection;
 use Small\Collection\Contract\CheckValueInterface;
-use Small\SwooleDb\Exception\RecordCollectionException;
-use Small\SwooleDb\Selector\Bean\OrderByCollection;
-use Small\SwooleDb\Selector\Bean\OrderByField;
-use Small\SwooleDb\Selector\Enum\OrderBySens;
+use Crust\SwooleDb\Exception\RecordCollectionException;
+use Crust\SwooleDb\Selector\Bean\OrderByCollection;
+use Crust\SwooleDb\Selector\Bean\OrderByField;
+use Crust\SwooleDb\Selector\Enum\OrderBySens;
 
 /**
  * @method RecordCollection current()

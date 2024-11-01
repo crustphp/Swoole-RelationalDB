@@ -5,13 +5,13 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core;
+namespace Crust\SwooleDb\Core;
 
 use Small\Collection\Collection\Collection;
-use Small\SwooleDb\Exception\DeleteFailException;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Exception\WrongFormatException;
-use Small\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Exception\DeleteFailException;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Exception\WrongFormatException;
+use Crust\SwooleDb\Registry\TableRegistry;
 
 class Record implements \ArrayAccess
 {

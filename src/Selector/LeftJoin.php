@@ -1,6 +1,6 @@
 <?php
 
-namespace Small\SwooleDb\Selector;
+namespace Crust\SwooleDb\Selector;
 
 class LeftJoin extends Join
 {

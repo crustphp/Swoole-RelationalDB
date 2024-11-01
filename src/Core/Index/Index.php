@@ -5,15 +5,15 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Index;
+namespace Crust\SwooleDb\Core\Index;
 
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Core\Enum\Operator;
-use Small\SwooleDb\Core\Table;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Exception\TableNotExists;
-use Small\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Core\Enum\Operator;
+use Crust\SwooleDb\Core\Table;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Exception\TableNotExists;
+use Crust\SwooleDb\Registry\TableRegistry;
 
 class Index implements \JsonSerializable
 {
@@ -55,7 +55,7 @@ class Index implements \JsonSerializable
      * Search value
      * @param (int|float|string|null)[] $values
      * @return string[]
-     * @throws \Small\SwooleDb\Exception\IndexException
+     * @throws \Crust\SwooleDb\Exception\IndexException
      */
     public function searchEqual(array $values): array
     {

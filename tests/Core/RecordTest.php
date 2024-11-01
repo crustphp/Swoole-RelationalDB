@@ -5,15 +5,15 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Test\Core;
+namespace Crust\SwooleDb\Test\Core;
 
 use PHPUnit\Framework\TestCase;
-use Small\SwooleDb\Core\Column;
-use Small\SwooleDb\Core\Enum\ColumnType;
-use Small\SwooleDb\Core\Record;
-use Small\SwooleDb\Exception\DeleteFailException;
-use Small\SwooleDb\Exception\NotFoundException;
-use Small\SwooleDb\Registry\TableRegistry;
+use Crust\SwooleDb\Core\Column;
+use Crust\SwooleDb\Core\Enum\ColumnType;
+use Crust\SwooleDb\Core\Record;
+use Crust\SwooleDb\Exception\DeleteFailException;
+use Crust\SwooleDb\Exception\NotFoundException;
+use Crust\SwooleDb\Registry\TableRegistry;
 
 class RecordTest extends TestCase
 {

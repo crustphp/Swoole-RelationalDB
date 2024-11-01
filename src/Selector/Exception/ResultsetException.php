@@ -5,9 +5,9 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Selector\Exception;
+namespace Crust\SwooleDb\Selector\Exception;
 
-use Small\SwooleDb\Exception\SmallSwooleDbException;
+use Crust\SwooleDb\Exception\SmallSwooleDbException;
 
 class ResultsetException extends SmallSwooleDbException
 {

@@ -5,7 +5,7 @@
  *  Under GNU GPL V3 licence
  */
 
-namespace Small\SwooleDb\Core\Index;
+namespace Crust\SwooleDb\Core\Index;
 
 class IndexData
 {
