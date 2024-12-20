@@ -796,11 +796,12 @@ class Table implements \Iterator
     /**
      * Retrieves data from the underlying Swoole Table with optional column filtering.
      *
-     * @param  mixed $selectColumns List of columns to retrieve. If empty, all columns are returned.
-     * @param  mixed $encodeValues Optional: Array of columns and target encoding if you want to encode the column values
+     * @param  array $selectColumns List of columns to retrieve. If empty, all columns are returned.
+     * @param  array $encodeValues Optional: Array of columns and target encoding if you want to encode the column values
+     * @param  bool $returnJson Optional: If true, the returned response will be JSON string
      * @return mixed
      */
-    public function getSwooleTableData(array $selectColumns = [], array $encodeValues = []): mixed
+    public function getSwooleTableData(?array $selectColumns = null, ?array $encodeValues = null, bool $returnJson = false): mixed
     {
         // Get the Swoole Table
         $table = $this->getSwooleTable();
@@ -809,18 +810,18 @@ class Table implements \Iterator
         $finalizedData = [];
 
         // If $selectColumns are provided than return only these columns data, otherwise return data of all columns
-        $selectColumns = count($selectColumns) ? $selectColumns : $this->getColumnsArray();
+        $selectColumns = $selectColumns != null ? $selectColumns : $this->getColumnsArray();
 
         // Contains array of Nullable Columns
         $nullColumns = $this->nullableColumns;
 
         // Check if the encoding values are correct
-        if (count($encodeValues)) {
+        if (!is_null($encodeValues)) {
             foreach ($encodeValues as $colName => $encoding) {
                 if (!in_array($colName, $selectColumns)) {
                     throw new \RuntimeException('Column (' . $colName . ') does not exist');
                 }
-                
+
                 if (empty(trim($encoding))) {
                     throw new \RuntimeException('Encoding missing for column (' . $colName . ')');
                 }
@@ -841,6 +842,15 @@ class Table implements \Iterator
             }
 
             $finalizedData[] = $record;
+        }
+
+        if ($returnJson) {
+            // Here we will check if the data is encoded without any error
+            $finalizedData = json_encode($finalizedData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+            if ($finalizedData == false) {
+                throw new \RuntimeException("JSON encoding error: " . json_last_error_msg());
+            }
         }
 
         return $finalizedData;
