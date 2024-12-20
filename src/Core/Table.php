@@ -51,6 +51,12 @@ class Table implements \Iterator
 
     protected bool $created = false;
 
+    // Contains the array of Nullable Columns
+    protected array $nullableColumns = [];
+
+    // Contains the array of Signed Columns
+    protected array $signedColumns = [];
+
     protected IdGeneratorInterface|null $idGenerator = null;
 
     public function __construct(
@@ -121,19 +127,31 @@ class Table implements \Iterator
     {
         return $this->maxSize;
     }
-
+    
+    /**
+     * Add a new Column in Swoole Table
+     *
+     * @param  Column $column
+     * @return self
+     */
     public function addColumn(Column $column): self
     {
-
         $this->openswooleTable->column($column->getName(), $column->getType()->value, $column->getSize() ?? 0);
         $this->columns[$column->getName()] = $column;
 
-        if (in_array($column->getType(), [ColumnType::float, ColumnType::int])) {
-            $this->openswooleTable->column($column->getName() . '::sign', ColumnType::int->value, 1);
+        
+        // Check if Column is Nullable
+        if ($column->isNullable()) {
+            $this->openswooleTable->column($column->getName() . '::null', ColumnType::int->value, 1);
+            $this->nullableColumns[$column->getName()] = $column->getName() . '::null';
         }
 
-        $this->openswooleTable->column($column->getName() . '::null', ColumnType::int->value, 1);
-
+        // Check if Column is Signed
+        if ($column->isSigned() && in_array($column->getType(), [ColumnType::float, ColumnType::int])) {
+            $this->openswooleTable->column($column->getName() . '::sign', ColumnType::int->value, 1);
+            $this->signedColumns[$column->getName()] = $column->getName() . '::sign';
+        }
+    
         return $this;
 
     }
@@ -186,46 +204,54 @@ class Table implements \Iterator
      */
     protected function setMetasValues(array $rawRecord, bool $abs): array
     {
-
         $array = $rawRecord;
+
+        $columns = $this->getColumns();
         foreach ($rawRecord as $column => $value) {
+            $columnType = $columns[$column]->getType();
+
             if ($value === null) {
                 $array[$column . '::null'] = 1;
-                $array[$column] = 0;
+                // $array[$column] = 0;
+
+                $array[$column] = $columns[$column]->getNullValue();
             } else {
                 $array[$column . '::null'] = 0;
             }
 
-            if ($value !== null && in_array($this->getColumns()[$column]->getType(), [ColumnType::int, ColumnType::float])) {
+            if ($value !== null && in_array($columnType, [ColumnType::int, ColumnType::float])) {
 
                 if (!is_int($value) && !is_float($value)) {
                     throw new \LogicException('Impossible value for type (' . gettype($value) . ')');
                 }
 
                 $array[$column . '::sign'] = $value < 0 ? 1 : 0;
-                if($abs) {
+                if ($abs) {
                     $value = abs($value);
                 }
             }
 
-            switch($this->getColumns()[$column]->getType()) {
+            switch($columnType) {
                 case ColumnType::int:
-                    if (!is_int($value)) {
+                    if (!is_null($value) && !is_int($value)) {
                         throw new \LogicException('Impossible value for type (' . gettype($value) . ')');
                     }
-                    $array[$column] = (int)$value;
+
+                    $array[$column] = is_null($value) ? $array[$column] : (int) $value;
                     break;
                 case ColumnType::float:
-                    if (!is_int($value) && !is_float($value)) {
+                    if (!is_null($value) && !is_int($value) && !is_float($value)) {
                         throw new \LogicException('Impossible value for type (' . gettype($value) . ')');
                     }
-                    $array[$column] = (float)$value;
+                    
+                    $array[$column] = is_null($value) ? $array[$column] : (float) $value;
                     break;
                 case ColumnType::string:
-                    if (!is_scalar($value)) {
+                    if (!is_null($value) && !is_scalar($value)) {
                         throw new \LogicException('Impossible value for type (' . gettype($value) . ')');
                     }
-                    $array[$column] = (string)$value;
+
+                    $array[$column] = is_null($value) ? $array[$column] : (string) $value;
                     break;
             }
         }
@@ -305,12 +331,12 @@ class Table implements \Iterator
 
         }
 
-        $result = [];
-        foreach ($setValues as $field => $item) {
-            if (array_key_exists($field, $columns = $this->getColumns()) && $columns[$field] !== null) {
-                $result[$field] = $item === null ? $columns[$field]->getNullValue() : $item;
-            }
-        }
+        // $result = [];
+        // foreach ($setValues as $field => $item) {
+        //     if (array_key_exists($field, $columns = $this->getColumns()) && $columns[$field] !== null) {
+        //         $result[$field] = $item === null ? $columns[$field]->getNullValue() : $item;
+        //     }
+        // }
 
         foreach ($this->indexes as $fieldsString => $index) {
 
@@ -325,7 +351,8 @@ class Table implements \Iterator
 
         $this->addToForeignKeys($key, $setValues);
 
-        if ($this->openswooleTable->set($key, $this->setMetasValues($result, $abs))) {
+        // if ($this->openswooleTable->set($key, $this->setMetasValues($setValues, $abs))) {
+        if ($this->openswooleTable->set($key, $this->setMetasValues($setValues, $abs))) {
             return $key;
         } else {
             return null;
@@ -334,7 +361,7 @@ class Table implements \Iterator
     }
 
     /**
-     * @param (int|float|string|null)[] $values
+     * @param (int|float|string|null)[] $valuessetValues
      * @return $this
      * @throws FieldValueIsNull
      * @throws NotFoundException
@@ -753,5 +780,48 @@ class Table implements \Iterator
      */
     public function getSwooleTable(): mixed {
         return $this->openswooleTable;
+    }
+
+    /**
+     * Returns the list of the names of the Table columns
+     *
+     * @return array
+     */
+    public function getColumnsArray(): array
+    {
+        return array_keys($this->getColumns()) ?? [];
+    }
+
+    /**
+     * Retrieves data from the underlying Swoole Table with optional column filtering.
+     *
+     * @param  mixed $selectColumns List of columns to retrieve. If empty, all columns are returned.
+     * @return mixed
+     */
+    public function getSwooleTableData(array $selectColumns = []): mixed
+    {
+        // Get the Swoole Table
+        $table = $this->getSwooleTable();
+
+        // Array Contains Finalized Data
+        $finalizedData = [];
+
+        // If $selectColumns are provided than return only these columns data, otherwise return data of all columns
+        $selectColumns = count($selectColumns) ? $selectColumns : $this->getColumnsArray();
+
+        // Contains array of Nullable Columns
+        $nullColumns = $this->nullableColumns;
+
+        foreach ($table as $tableRow) {
+            $record = [];
+
+            foreach ($selectColumns as $column) {
+                $record[$column] = isset($nullColumns[$column]) && $tableRow[$nullColumns[$column]] == 1 ? null : $tableRow[$column];
+            }
+
+            $finalizedData[] = $record;
+        }
+
+        return $finalizedData;
     }
 }

@@ -26,6 +26,8 @@ class Column
         protected readonly ColumnType $type,
         protected readonly int $size = 0,
         protected readonly mixed $nullValue = -1,
+        protected readonly bool $isNullable = false,
+        protected readonly bool $isSigned = false,
     )
     {
 
@@ -41,6 +43,10 @@ class Column
             throw new MalformedTable('Missing size param for ' . $this->type->name . ' type, creating ' . $name . ' column');
         }
 
+        // If Column is string that it cannot have $isSigned as true
+        if ($this->type == ColumnType::string && $this->isSigned) {
+            throw new MalformedTable('String column (' . $name . ') cannot be signed');
+        }
     }
 
     /**
@@ -76,5 +82,22 @@ class Column
         return $this->nullValue;
 
     }
-
+    
+    /**
+     * Whether the column is nullable or not, nullable columns will have meta ::null as extra column
+     *
+     * @return bool
+     */
+    public function isNullable(): bool {
+        return $this->isNullable;
+    }
+    
+    /**
+     * Whether the column is Signed Column, 
+     *
+     * @return bool
+     */
+    public function isSigned(): bool {
+        return $this->isSigned;
+    }
 }
