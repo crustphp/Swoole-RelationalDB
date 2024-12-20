@@ -226,6 +226,7 @@ class Table implements \Iterator
                 }
 
                 $array[$column . '::sign'] = $value < 0 ? 1 : 0;
+                
                 if ($abs) {
                     $value = abs($value);
                 }
@@ -796,9 +797,10 @@ class Table implements \Iterator
      * Retrieves data from the underlying Swoole Table with optional column filtering.
      *
      * @param  mixed $selectColumns List of columns to retrieve. If empty, all columns are returned.
+     * @param  mixed $encodeValues Optional: Array of columns and target encoding if you want to encode the column values
      * @return mixed
      */
-    public function getSwooleTableData(array $selectColumns = []): mixed
+    public function getSwooleTableData(array $selectColumns = [], array $encodeValues = []): mixed
     {
         // Get the Swoole Table
         $table = $this->getSwooleTable();
@@ -812,11 +814,30 @@ class Table implements \Iterator
         // Contains array of Nullable Columns
         $nullColumns = $this->nullableColumns;
 
+        // Check if the encoding values are correct
+        if (count($encodeValues)) {
+            foreach ($encodeValues as $colName => $encoding) {
+                if (!in_array($colName, $selectColumns)) {
+                    throw new \RuntimeException('Column (' . $colName . ') does not exist');
+                }
+                
+                if (empty(trim($encoding))) {
+                    throw new \RuntimeException('Encoding missing for column (' . $colName . ')');
+                }
+            }
+        }
+
         foreach ($table as $tableRow) {
             $record = [];
 
             foreach ($selectColumns as $column) {
-                $record[$column] = isset($nullColumns[$column]) && $tableRow[$nullColumns[$column]] == 1 ? null : $tableRow[$column];
+                if (isset($nullColumns[$column]) && $tableRow[$nullColumns[$column]] == 1) {
+                    $record[$column] = null;
+                } else if (isset($encodeValues[$column]) && !mb_check_encoding($tableRow[$column], $encoding)) {
+                    $record[$column] = mb_convert_encoding($tableRow[$column], $encoding, 'auto');
+                } else {
+                    $record[$column] = $tableRow[$column];
+                }
             }
 
             $finalizedData[] = $record;
