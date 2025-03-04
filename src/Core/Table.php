@@ -66,7 +66,6 @@ class Table implements \Iterator
     ) {
 
         $this->openswooleTable = new \OpenSwoole\Table($this->maxSize, $conflict_proportion);
-
     }
 
     public function uniqueId(IdGeneratorInterface $idGenerator): self
@@ -75,14 +74,12 @@ class Table implements \Iterator
         $this->idGenerator = $idGenerator;
 
         return $this;
-
     }
 
     public function hasIndex(string $field): bool
     {
 
         return array_key_exists($field, $this->indexes);
-
     }
 
     public function create(): self
@@ -93,7 +90,6 @@ class Table implements \Iterator
         $this->created = true;
 
         return $this;
-
     }
 
     /**
@@ -103,7 +99,6 @@ class Table implements \Iterator
     {
 
         return $this->name;
-
     }
 
     /**
@@ -116,7 +111,6 @@ class Table implements \Iterator
         $this->name = $name;
 
         return $this;
-
     }
 
     /**
@@ -127,7 +121,7 @@ class Table implements \Iterator
     {
         return $this->maxSize;
     }
-    
+
     /**
      * Add a new Column in Swoole Table
      *
@@ -139,7 +133,7 @@ class Table implements \Iterator
         $this->openswooleTable->column($column->getName(), $column->getType()->value, $column->getSize() ?? 0);
         $this->columns[$column->getName()] = $column;
 
-        
+
         // Check if Column is Nullable
         if ($column->isNullable()) {
             $this->openswooleTable->column($column->getName() . '::null', ColumnType::int->value, 1);
@@ -151,16 +145,14 @@ class Table implements \Iterator
             $this->openswooleTable->column($column->getName() . '::sign', ColumnType::int->value, 1);
             $this->signedColumns[$column->getName()] = $column->getName() . '::sign';
         }
-    
-        return $this;
 
+        return $this;
     }
 
     public function hasColumn(string $column): bool
     {
 
         return key_exists($column, $this->columns);
-
     }
 
     /**
@@ -170,7 +162,6 @@ class Table implements \Iterator
     {
 
         return $this->columns;
-
     }
 
     protected function formatValue(int|string $key, string $column, string|int|float|null $value): string|int|float|null
@@ -194,7 +185,6 @@ class Table implements \Iterator
         }
 
         return $value;
-
     }
 
     /**
@@ -226,13 +216,13 @@ class Table implements \Iterator
                 }
 
                 $array[$column . '::sign'] = $value < 0 ? 1 : 0;
-                
+
                 if ($abs) {
                     $value = abs($value);
                 }
             }
 
-            switch($columnType) {
+            switch ($columnType) {
                 case ColumnType::int:
                     if (!is_null($value) && !is_int($value)) {
                         throw new \LogicException('Impossible value for type (' . gettype($value) . ')');
@@ -244,7 +234,7 @@ class Table implements \Iterator
                     if (!is_null($value) && !is_int($value) && !is_float($value)) {
                         throw new \LogicException('Impossible value for type (' . gettype($value) . ')');
                     }
-                    
+
                     $array[$column] = is_null($value) ? $array[$column] : (float) $value;
                     break;
                 case ColumnType::string:
@@ -258,7 +248,6 @@ class Table implements \Iterator
         }
 
         return $array;
-
     }
 
     /**
@@ -280,7 +269,6 @@ class Table implements \Iterator
             }
 
             return $this->formatValue($key, $column, $rawResult[$column]);
-
         }
 
         if (!is_array($rawResult)) {
@@ -300,11 +288,9 @@ class Table implements \Iterator
                     $result[$column] = null;
                 }
             }
-
         }
 
         return new Collection($result);
-
     }
 
     /**
@@ -329,7 +315,6 @@ class Table implements \Iterator
             do {
                 $key = $this->idGenerator->generate();
             } while ($this->exists($key));
-
         }
 
         // $result = [];
@@ -347,7 +332,6 @@ class Table implements \Iterator
             }
 
             $index->insert($key, $indexValues);
-
         }
 
         $this->addToForeignKeys($key, $setValues);
@@ -358,7 +342,6 @@ class Table implements \Iterator
         } else {
             return null;
         }
-
     }
 
     /**
@@ -385,7 +368,6 @@ class Table implements \Iterator
                         $values[$foreignKey->getFromField()],
                         $key,
                     );
-
             } else if ($foreignKey->getFromField() == Column::KEY_COL_NAME && $foreignKey->getToField() == Column::KEY_COL_NAME) {
 
                 $foreignKey->addToForeignIndex($key, $key);
@@ -393,13 +375,10 @@ class Table implements \Iterator
                 $foreignKey->getReflected()
                     ->addToForeignIndex($key, $key)
                 ;
-
             }
-
         }
 
         return $this;
-
     }
 
     /**
@@ -421,7 +400,6 @@ class Table implements \Iterator
         }
 
         return new Record($this->getName(), $key, $collection);
-
     }
 
     /**
@@ -433,7 +411,6 @@ class Table implements \Iterator
     {
 
         return $this->openswooleTable->exists((string)$key);
-
     }
 
     /**
@@ -474,7 +451,6 @@ class Table implements \Iterator
         $toTable->foreignKeys[$toField == Column::KEY_COL_NAME ? $this->getName() . 's' : $toField] = $foreignKeyReflection;
 
         return $this;
-
     }
 
     public function getForeignTable(string $foreignKeyName): string
@@ -485,14 +461,12 @@ class Table implements \Iterator
         }
 
         return $this->foreignKeys[$foreignKeyName]->getToTableName();
-
     }
 
     public function count(): int
     {
 
         return $this->openswooleTable->count();
-
     }
 
     /**
@@ -516,13 +490,11 @@ class Table implements \Iterator
                 if ($field == $column->getName()) {
                     $ok = true;
                 }
-
             }
 
             if (!$ok) {
                 throw new IndexException('Field ' . $field . ' not found');
             }
-
         }
 
         $index = $this->indexes[$name = implode('|', $fields)] = new Index(
@@ -540,12 +512,10 @@ class Table implements \Iterator
                 }
 
                 $index->insert($key ?? '', $values);
-
             }
         }
 
         return $this;
-
     }
 
     /**
@@ -569,7 +539,6 @@ class Table implements \Iterator
                     if ($filter->field[$keyField] == $fieldsString[$keyField]) {
                         $finalFilters[$keyField] = $field;
                     }
-
                 }
 
                 if ($finalFilters->count() > 0) {
@@ -578,11 +547,9 @@ class Table implements \Iterator
                     }
                     $operations[$filter->operator->name] = $finalFilters;
                 }
-
             }
 
             $indexes[$fieldsString] = $operations;
-
         }
 
         $indexes->removeEmpty();
@@ -607,16 +574,13 @@ class Table implements \Iterator
                     }
 
                     $finalFields[] = $field;
-
                 }
 
                 if ($finalFields->count() > 0) {
                     /** @phpstan-ignore-next-line  */
                     $indexes[$fieldsString][$operation] = $finalFields;
                 }
-
             }
-
         }
 
         $resultsKeys = new Collection();
@@ -640,14 +604,11 @@ class Table implements \Iterator
                         if ($filter->operator->name == $operation && $filter->field == $field) {
                             $values[] = $filter->value;
                         }
-
                     }
                 }
 
                 $resultsKeys[] = $this->indexes[$fieldsString]->getKeys(Operator::findByName($operation), $values);
-
             }
-
         }
 
         /** @var Collection $resultKeys */
@@ -658,7 +619,6 @@ class Table implements \Iterator
             } else {
                 $keys->intersect($resultKeys, true);
             }
-
         }
 
         if (!isset($keys)) {
@@ -672,7 +632,6 @@ class Table implements \Iterator
         }
 
         return $resultset;
-
     }
 
     /**
@@ -688,7 +647,6 @@ class Table implements \Iterator
         }
 
         return $this->foreignKeys[$alias]->getForeignRecords($from[$this->name], $alias);
-
     }
 
     public function current(): Record
@@ -696,40 +654,37 @@ class Table implements \Iterator
 
         $data = $this->openswooleTable->current();
 
-        return new Record($this->name, $this->openswooleTable->key() ??
-            throw new NotFoundException('No current record'),
+        return new Record(
+            $this->name,
+            $this->openswooleTable->key() ??
+                throw new NotFoundException('No current record'),
             $data ??
-            throw new NotFoundException('No current record'),
+                throw new NotFoundException('No current record'),
         );
-
     }
 
     public function next(): void
     {
 
         $this->openswooleTable->next();
-
     }
 
     public function key(): ?string
     {
 
         return $this->openswooleTable->key();
-
     }
 
     public function valid(): bool
     {
 
         return $this->openswooleTable->valid();
-
     }
 
     public function rewind(): void
     {
 
         $this->openswooleTable->rewind();
-
     }
 
     public function del(string $key): bool
@@ -751,15 +706,12 @@ class Table implements \Iterator
                 }
 
                 $values[] = $value;
-
             }
 
             $index->remove($key, $values);
-
         }
 
         return $this->openswooleTable->del((string)$key);
-
     }
 
     public function destroy(): bool
@@ -771,15 +723,15 @@ class Table implements \Iterator
         }
 
         return $this->openswooleTable->destroy();
-
     }
-    
+
     /**
      * This function returns the original Swoole Table instead of Wrapper Table
      *
      * @return mixed
      */
-    public function getSwooleTable(): mixed {
+    public function getSwooleTable(): mixed
+    {
         return $this->openswooleTable;
     }
 
@@ -799,9 +751,11 @@ class Table implements \Iterator
      * @param  array $selectColumns List of columns to retrieve. If empty, all columns are returned.
      * @param  array $encodeValues Optional: Array of columns and target encoding if you want to encode the column values
      * @param  bool $returnJson Optional: If true, the returned response will be JSON string
+     * @param  array $jsonEncodeColumns Optional: Array of columns you want to json_encode while retrieving
+     * @param  array $jsonDecodeColumns Optional: Array of columns you want to json_decode while retrieving
      * @return mixed
      */
-    public function getSwooleTableData(?array $selectColumns = null, ?array $encodeValues = null, bool $returnJson = false): mixed
+    public function getSwooleTableData(?array $selectColumns = null, ?array $encodeValues = null, bool $returnJson = false, ?array $jsonEncodeColumns = [], ?array $jsonDecodeColumns = []): mixed
     {
         // Get the Swoole Table
         $table = $this->getSwooleTable();
@@ -838,6 +792,24 @@ class Table implements \Iterator
                     $record[$column] = mb_convert_encoding($tableRow[$column], $encoding, 'auto');
                 } else {
                     $record[$column] = $tableRow[$column];
+                }
+
+                // Json Encode Column while retrieving
+                if (in_array($column, $jsonEncodeColumns)) {
+                    $record[$column] = json_encode($tableRow[$column], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+                    if ($record[$column] == false) {
+                        throw new \RuntimeException("JSON encoding failed. Column ($column) | Error: " . json_last_error_msg());
+                    }
+                }
+
+                // Json Decode Column while retrieving
+                if (in_array($column, $jsonDecodeColumns)) {
+                    $record[$column] = json_decode($tableRow[$column], true);
+
+                    if ($record[$column] == false) {
+                        throw new \RuntimeException("JSON decoding failed. Column ($column) | Error: " . json_last_error_msg());
+                    }
                 }
             }
 
