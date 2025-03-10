@@ -753,9 +753,10 @@ class Table implements \Iterator
      * @param  bool $returnJson Optional: If true, the returned response will be JSON string
      * @param  array $jsonEncodeColumns Optional: Array of columns you want to json_encode while retrieving
      * @param  array $jsonDecodeColumns Optional: Array of columns you want to json_decode while retrieving
+     * @param  bool $retainOriginalKeys Optional: If true, data rows will be returned with their original keys (instead of the default array indexes), used when storing them in the Swoole table.
      * @return mixed
      */
-    public function getSwooleTableData(?array $selectColumns = null, ?array $encodeValues = null, bool $returnJson = false, ?array $jsonEncodeColumns = [], ?array $jsonDecodeColumns = []): mixed
+    public function getSwooleTableData(?array $selectColumns = null, ?array $encodeValues = null, bool $returnJson = false, ?array $jsonEncodeColumns = [], ?array $jsonDecodeColumns = [], bool $retainOriginalKeys = false): mixed
     {
         // Get the Swoole Table
         $table = $this->getSwooleTable();
@@ -782,9 +783,9 @@ class Table implements \Iterator
             }
         }
 
-        foreach ($table as $tableRow) {
+        foreach ($table as $key => $tableRow) {
             $record = [];
-
+            
             foreach ($selectColumns as $column) {
                 if (isset($nullColumns[$column]) && $tableRow[$nullColumns[$column]] == 1) {
                     $record[$column] = null;
@@ -813,7 +814,13 @@ class Table implements \Iterator
                 }
             }
 
-            $finalizedData[] = $record;
+            // Check whether to return rows / records with original key that was used when adding them into the swoole table.
+            if ($retainOriginalKeys) {
+                $finalizedData[$key] = $record;
+            }
+            else {
+                $finalizedData[] = $record;
+            }
         }
 
         if ($returnJson) {
